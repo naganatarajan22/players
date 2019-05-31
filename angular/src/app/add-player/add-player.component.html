@@ -1,0 +1,37 @@
+ <form name="form" (ngSubmit)="f.form.valid && addPlayers()" #f="ngForm" novalidate>
+    <table class="mat-elevation-z8">
+      <thead>
+        <tr>
+          <th> Jersey No </th>
+          <th> Player Name </th>
+          <th> Add player </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" name="jerseyNo" [(ngModel)]="jerseyNo" #userName="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && jerseyNo.invalid }" required />
+              <div *ngIf="f.submitted && jerseyNo.invalid" class="invalid-feedback">
+                <div *ngIf="jerseyNo.errors.required">Jersey number is required</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" name="playerName" [(ngModel)]="playerName" #userName="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && playerName.invalid }" required />
+              <div *ngIf="f.submitted && playerName.invalid" class="invalid-feedback">
+                <div *ngIf="playerName.errors.required">Player Name is required</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <button>Add Player</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <button (click)="navigateToAddTeam()">Back</button>

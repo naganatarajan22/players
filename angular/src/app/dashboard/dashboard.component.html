@@ -1,0 +1,33 @@
+<button (click)="logout()">logout</button>
+
+<button (click)="addTeam()">Add Teams</button>
+
+
+<div *ngIf="isCreateTeamName">
+  <form name="form" (ngSubmit)="f.form.valid && createTeamName()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="teamName">Please Enter Team Name</label>
+      <input type="text" class="form-control" name="teamName" [(ngModel)]="teamName" #userName="ngModel"
+        [ngClass]="{ 'is-invalid': f.submitted && teamName.invalid }" required />
+      <div *ngIf="f.submitted && teamName.invalid" class="invalid-feedback">
+        <div *ngIf="teamName.errors.required">Team Name is required</div>
+      </div>
+    </div>
+    <button>Create Team</button>
+  </form>
+</div>
+
+<div *ngIf="dataSource.length">
+<table mat-table  [(dataSource)]="dataSource" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+   <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRow(row)"></tr>
+</table>
+</div>
